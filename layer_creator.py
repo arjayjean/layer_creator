@@ -4,25 +4,25 @@ import subprocess
 
 subprocess.run('clear')
 
-name = input('What package are you making a layer?: ')
+layer = input('What package are you making a layer?: ')
 
 
-def command_list(commands):
+def execute(commands):
     commands = [subprocess.run(command) for command in commands]
 
-def create(layer):
+def create(package):
 
-    path = f'Desktop/LambdaLayers/{layer}'
-    first_command = [
+    path = f'' # The path where you would like to store the package
+    cmd = [
         ['mkdir', f'{path}'],
         ['mkdir', f'{path}/python'],
-        ['pip3', 'install', '-t', f'{path}/python', f'{layer}'],
+        ['pip3', 'install', '-t', f'{path}/python', f'{package}'],
         ['zip', '-r', f'{path}/python.zip', f'{path}']
          ]
 
-    command_list(first_command)
+    execute(cmd)
 
-    print(f"\n'{layer}' was successfully created!!!\n")
+    print(f"\n'{package}' was successfully created!!!\n")
 
     
-create(name)
+create(layer)
